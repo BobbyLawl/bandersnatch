@@ -1,2 +1,5 @@
 # bandersnatch
-labs part 1
+First Ticket
+Bandersnatch.py
+
+Second Ticket
