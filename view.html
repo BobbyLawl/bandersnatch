@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Monster Prediction App - View</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+</head>
+<body>
+    {% include 'navbar.html' %}
+    <div class="container">
+        <h1>Monster View</h1>
+        <form method="post">
+            <select name="monster_name" id="monster-select">
+                {% for name in monster_names %}
+                    <option value="{{ name }}" {% if name == selected_monster %}selected{% endif %}>{{ name }}</option>
+                {% endfor %}
+            </select>
+            <input type="submit" value="Submit">
+        </form>
+        {% if monster_data is not none %}
+            {% if not monster_data.empty %}
+                <table class="table table-striped">
+                    <tr>
+                        <th>Name</th>
+                        <th>Level</th>
+                        <th>Attack</th>
+                        <th>Speed</th>
+                        <th>Strength</th>
+                        <th>Defence</th>
+                        <th>Magic</th>
+                        <th>Weakness</th>
+                    </tr>
+                    {% for index, row in monster_data.iterrows() %}
+                        <tr>
+                            <td>{{ row['Name'] }}</td>
+                            <td>{{ row['Level'] }}</td>
+                            <td>{{ row['Attack'] }}</td>
+                            <td>{{ row['Speed'] }}</td>
+                            <td>{{ row['Strength'] }}</td>
+                            <td>{{ row['Defence'] }}</td>
+                            <td>{{ row['Magic'] }}</td>
+                            <td>{{ row['Weakness'] }}</td>
+                        </tr>
+                    {% endfor %}
+                </table>
+            {% else %}
+                <p>No data found.</p>
+            {% endif %}
+        {% else %}
+            <p>Please select a monster.</p>
+        {% endif %}
+    </div>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            var select = document.getElementById('monster-select');
+            var selected_monster = '{{ selected_monster }}';
+            for (var i = 0; i < select.options.length; i++) {
+                if (select.options[i].value == selected_monster) {
+                    select.options[i].selected = true;
+                }
+            }
+        });
+    </script>
+</body>
+</html>
