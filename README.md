@@ -1,5 +1,5 @@
 # bandersnatch
-First Ticket - Bandersnatch.py
+First Ticket - Bandersnatch
 
 
 
